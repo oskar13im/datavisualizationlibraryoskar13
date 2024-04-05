@@ -1,57 +1,45 @@
-# Data Visualization Library
+# Image Compression Utility
 
-A lightweight JavaScript library for creating simple data visualizations.
+A lightweight Node.js utility for compressing images using the Sharp library.
 
 ## Installation
 
-You can install the library via npm:
+You can install the utility via npm:
 
 ```bash
-npm install data-visualization-library
+npm install image-compression-utility
 ```
 
 ## Usage
 
 ```javascript
-// Import the library
-const DataVisualizationLibrary = require('data-visualization-library');
+const compressImage = require('image-compression-utility');
 
-// Example data
-const data = [
-    { label: 'A', value: 10 },
-    { label: 'B', value: 20 },
-    { label: 'C', value: 15 }
-];
-
-// Example options
+// Example usage
+const inputPath = 'input.jpg';
+const outputPath = 'output.jpg';
 const options = {
-    width: 400,
-    height: 300,
-    barColor: 'steelblue',
-    margin: { top: 20, right: 30, bottom: 30, left: 40 }
+    quality: 80,
+    maxWidth: 1024,
+    maxHeight: 768
 };
 
-// Create a bar chart
-const svg = DataVisualizationLibrary.createBarChart(data, options);
-
-// Append the SVG element to the DOM
-document.body.appendChild(svg);
+// Compress the image
+compressImage(inputPath, outputPath, options);
 ```
 
 ## API
 
-### `createBarChart(data, options)`
+### `compressImage(inputPath, outputPath, options)`
 
-Creates a bar chart using the provided data and options.
+Compresses an image using the Sharp library.
 
-- `data`: An array of objects, where each object represents a data point. Each object should have a `label` and a `value`.
-- `options`: An optional object containing chart customization options. Available options are:
-  - `width`: Width of the chart (default: `400`).
-  - `height`: Height of the chart (default: `300`).
-  - `barColor`: Color of the bars (default: `'steelblue'`).
-  - `margin`: Object specifying margins around the chart (default: `{ top: 20, right: 30, bottom: 30, left: 40 }`).
-
-Returns an SVG element representing the created chart.
+- `inputPath`: The file path of the original image.
+- `outputPath`: The file path where the compressed image will be saved.
+- `options` (optional): An object containing compression options. Available options are:
+  - `quality`: The quality of the compressed image (default: `80`).
+  - `maxWidth`: The maximum width of the compressed image (default: `1024`).
+  - `maxHeight`: The maximum height of the compressed image (default: `768`).
 
 ## License
 

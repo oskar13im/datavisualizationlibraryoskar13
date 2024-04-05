@@ -1,24 +1,35 @@
-// data-visualization-library.js
+// image-compression-utility.js
 
-(function (global, factory) {
-    if (typeof exports === 'object' && typeof module !== 'undefined') {
-        module.exports = factory();
-    } else if (typeof define === 'function' && define.amd) {
-        define(factory);
-    } else {
-        global.DataVisualizationLibrary = factory();
-    }
-}(this, (function () {
-    // Your library code starts here
+const sharp = require('sharp');
+const fs = require('fs');
 
-    const DataVisualizationLibrary = {};
-
-    // Function to create a bar chart
-    DataVisualizationLibrary.createBarChart = function (data, options) {
-        // Your bar chart creation logic here
+// Function to compress an image
+function compressImage(inputPath, outputPath, options) {
+    // Default options
+    const defaultOptions = {
+        quality: 80,
+        maxWidth: 1024,
+        maxHeight: 768
     };
 
-    // Your library code ends here
+    // Merge default options with user-defined options
+    options = { ...defaultOptions, ...options };
 
-    return DataVisualizationLibrary;
-})));
+    // Compress the image
+    sharp(inputPath)
+        .resize({
+            width: options.maxWidth,
+            height: options.maxHeight,
+            fit: 'inside'
+        })
+        .toFormat('jpeg', { quality: options.quality })
+        .toFile(outputPath, (err, info) => {
+            if (err) {
+                console.error('Error compressing image:', err);
+            } else {
+                console.log('Image compressed successfully:', info);
+            }
+        });
+}
+
+module.exports = compressImage;

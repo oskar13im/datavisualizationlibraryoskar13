@@ -1,5 +1,5 @@
 {
-  "name": "datavisualizationlibraryoskar13", 
+  "name": "imagecompressionutility13", 
   "version": "1.0.0", 
   "description": "by oskar13", 
   "main": "./src/index.js",
@@ -15,6 +15,6 @@
     "",
     ""
   ],
-  "author": "", 
+  "author": "by oskar13", 
   "license": "MIT"
 }
